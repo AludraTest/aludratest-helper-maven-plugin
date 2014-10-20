@@ -25,18 +25,21 @@ public final class AludraTestServiceParser implements AludraTestClassConstants {
 
 	private Log log;
 
-	private AludraTestServiceParser(Log log) {
+    private MavenProject project;
+
+    private AludraTestServiceParser(MavenProject project, Log log) {
+        this.project = project;
 		this.log = log;
 	}
 
     public static AludraTestServicesDescription parse(MavenProject project, File aludraServicesFile, Log log)
 			throws MavenReportException {
-		AludraTestServiceParser result = new AludraTestServiceParser(log);
-        return result.internalParse(project, aludraServicesFile);
+        AludraTestServiceParser result = new AludraTestServiceParser(project, log);
+        return result.internalParse(aludraServicesFile);
 	}
 
 	@SuppressWarnings("unchecked")
-    private AludraTestServicesDescription internalParse(MavenProject project, File aludraServicesFile)
+    private AludraTestServicesDescription internalParse(File aludraServicesFile)
             throws MavenReportException {
 		// find all service interfaces
 		Properties aludraServices = readAludraServicesFile(aludraServicesFile);
@@ -97,6 +100,7 @@ public final class AludraTestServiceParser implements AludraTestClassConstants {
 				confDesc.defaultImplementationClass = implClass;
 				confDesc.implementorClasses = implementations;
 				confDesc.service = ifClass.isAnnotationPresent(serviceInterfaceAnnot);
+                confDesc.description = JavadocExtractor.extractJavadocHtml(project, ifClass, log);
 				confDesc.commonProperties = new ClassConfigurationPropertiesDescription(properties, complexTypes);
                 confDesc.implementationSpecificProperties = new LinkedHashMap<Class<?>, ClassConfigurationPropertiesDescription>();
 
@@ -307,6 +311,7 @@ public final class AludraTestServiceParser implements AludraTestClassConstants {
 		// parse complex type
 		ComplexConfigurationTypeDescription complexDesc = new ComplexConfigurationTypeDescription();
 		complexDesc.type = desc.type;
+        complexDesc.description = JavadocExtractor.extractJavadocHtml(project, desc.type, log);
 
 		if (!complexTypes.contains(complexDesc)) {
 			List<ConfigurationPropertyDescription> propertyList = new ArrayList<ConfigurationPropertyDescription>();

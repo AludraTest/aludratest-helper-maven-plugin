@@ -6,6 +6,8 @@ public class ComplexConfigurationTypeDescription {
 
 	Class<?> type;
 
+    String description;
+
     List<ConfigurationPropertyDescription> properties;
 
 	@Override
@@ -30,6 +32,10 @@ public class ComplexConfigurationTypeDescription {
 
     public Class<?> getType() {
         return type;
+    }
+
+    public String getDescription() {
+        return description;
     }
 
     public List<ConfigurationPropertyDescription> getProperties() {

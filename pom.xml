@@ -1,12 +1,45 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <groupId>org.aludratest.maven</groupId>
-  <artifactId>aludratest-helper-maven-plugin</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
-  <packaging>maven-plugin</packaging>
-  <name>AludraTest Maven Build Helper Plugin</name>
-  <description>Maven Plugin for AludraTest Build support, e.g. specialized site generation.</description>
-  
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>org.aludratest.maven</groupId>
+	<artifactId>aludratest-helper-maven-plugin</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>maven-plugin</packaging>
+	<name>AludraTest Maven Build Helper Plugin</name>
+	<description>Maven Plugin for AludraTest Build support, e.g. specialized site generation.</description>
+	
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+
+	<licenses>
+		<license>
+			<name>Apache License 2.0</name>
+			<url>http://www.apache.org/licenses/LICENSE-2.0</url>
+		</license>
+	</licenses>
+
+	<organization>
+		<name>aludratest.org</name>
+		<url>http://www.aludratest.org/</url>
+	</organization>
+
+	<developers>
+		<developer>
+			<name>Florian Albrecht</name>
+			<id>falbrech-hsdg</id>
+			<organization>Hamburg Sud</organization>
+			<organizationUrl>http://www.hamburgsud.com/</organizationUrl>
+			<timezone>+1</timezone>
+			<roles>
+				<role>architect</role>
+				<role>developer</role>
+				<role>administrator</role>
+			</roles>
+		</developer>
+	</developers>
+	
+
 	<dependencies>
 		<dependency>
 			<groupId>org.apache.maven</groupId>
@@ -49,8 +82,12 @@
 			<artifactId>doxia-site-renderer</artifactId>
 			<version>1.4</version>
 		</dependency>
+		<dependency>
+			<groupId>com.thoughtworks.qdox</groupId>
+			<artifactId>qdox</artifactId>
+			<version>2.0-M2</version>
+		</dependency>
 	</dependencies>
-
 
 	<build>
 		<plugins>
@@ -64,6 +101,6 @@
 			</plugin>
 		</plugins>
 	</build>
-	
-  
+
+
 </project>

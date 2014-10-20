@@ -6,9 +6,15 @@ public class ConfigurableDescription extends ComponentDescription {
 
 	boolean service;
 
+    String description;
+
 	ClassConfigurationPropertiesDescription commonProperties;
 
 	Map<Class<?>, ClassConfigurationPropertiesDescription> implementationSpecificProperties;
+
+    public String getDescription() {
+        return description;
+    }
 
     public boolean isService() {
         return service;

@@ -222,19 +222,33 @@ public class AludraTestServiceReportMojo extends AbstractMavenReport {
         sink.sectionTitle3();
         sink.text(configDescription.getInterfaceClass().getSimpleName());
         sink.sectionTitle3_();
+        
+        if (configDescription.getDescription() != null) {
+            String descriptionJavadoc = configDescription.getDescription();
+            descriptionJavadoc.replace("<br>", "<br />");
+            sink.rawText(descriptionJavadoc);
+            sink.lineBreak();
+            sink.lineBreak();
+        }
 
         sink.italic();
         sink.text("Interface class: " + configDescription.getInterfaceClass().getName());
         sink.lineBreak();
         sink.text("Default implementation: " + configDescription.getDefaultImplementationClass().getName());
         sink.lineBreak();
-        sink.text("All implementations: ");
-        // TODO list all implementations
+        sink.text("All known implementations: ");
+
+        StringBuilder sb = new StringBuilder();
+        for (Class<?> implClass : configDescription.getImplementorClasses()) {
+            if (sb.length() > 0) {
+                sb.append(", ");
+            }
+            sb.append(implClass.getName());
+        }
+        sink.text(sb.toString());
         sink.italic_();
         sink.lineBreak();
         sink.lineBreak();
-
-        // TODO render description of component? Perhaps Javadoc, or for services: description?
 
         if (!configDescription.getCommonProperties().getProperties().isEmpty()) {
             sink.section4();
@@ -312,7 +326,12 @@ public class AludraTestServiceReportMojo extends AbstractMavenReport {
             sink.text(complexType.getType().getSimpleName() + " Type");
             sink.sectionTitle5_();
 
-            // TODO a description, perhaps extracted from Javadoc?
+            if (complexType.getDescription() != null) {
+                sink.rawText(complexType.getDescription());
+                sink.lineBreak();
+                sink.lineBreak();
+            }
+
             renderPropertiesTable(sink, complexType.getProperties());
 
             sink.section5_();
