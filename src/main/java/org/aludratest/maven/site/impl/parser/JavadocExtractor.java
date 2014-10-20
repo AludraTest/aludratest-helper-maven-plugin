@@ -24,7 +24,14 @@ public final class JavadocExtractor {
     @SuppressWarnings("unchecked")
     public static String extractJavadocHtml(MavenProject project, Class<?> clazz, Log log) {
         JavaProjectBuilder builder = new JavaProjectBuilder();
-        builder.setEncoding("UTF-8");
+        // try to extract source encoding from project
+        String projectEncoding = project.getProperties().getProperty("project.build.sourceEncoding");
+        if (projectEncoding != null) {
+            builder.setEncoding(projectEncoding);
+        }
+        else {
+            builder.setEncoding("UTF-8");
+        }
 
         String fileClassName = clazz.getName();
         // if internal class, extract wrapper class name
