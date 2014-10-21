@@ -63,9 +63,11 @@ public class DoxiaHtmlDocumentBuilder extends HtmlDocumentBuilder {
 
     @Override
     protected String makeUrlAbsolute(String url) {
-        // if url is in /wiki/XY syntax, convert to ./XY.html
         if (url.startsWith(WIKI_URL_PREFIX)) {
-            return "./" + url.substring(WIKI_URL_PREFIX.length()).toLowerCase(Locale.US) + ".html";
+            String pageTitle = url.substring(WIKI_URL_PREFIX.length()).toLowerCase(Locale.US);
+            // replace underscores (spaces in page title) with dashes
+            pageTitle = pageTitle.replace('_', '-');
+            return "./" + pageTitle + ".html";
         }
         else {
             return super.makeUrlAbsolute(url);

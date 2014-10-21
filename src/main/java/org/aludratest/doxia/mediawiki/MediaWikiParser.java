@@ -44,6 +44,7 @@ public class MediaWikiParser extends AbstractWikitextParser {
         
         StringWriter out = new StringWriter();
         DoxiaHtmlDocumentBuilder builder = new DoxiaHtmlDocumentBuilder(out);
+        builder.setPrependImagePrefix("./images/");
         parser.setBuilder(builder);
         parser.parse(markupContent);
         parser.setBuilder(null);
