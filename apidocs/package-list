@@ -1,2 +1,4 @@
+org.aludratest.doxia
+org.aludratest.doxia.mediawiki
 org.aludratest.maven.site
 org.aludratest.maven.site.impl.parser
