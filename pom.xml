@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.aludratest.maven</groupId>
 	<artifactId>aludratest-helper-maven-plugin</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0.0-SNAPSHOT</version>
 	<packaging>maven-plugin</packaging>
 	<name>AludraTest Maven Build Helper Plugin</name>
 	<description>Maven Plugin for AludraTest Build support, e.g. specialized site generation.</description>
@@ -110,17 +110,17 @@
 			<version>0.9.4.I20090220-1600-e3x</version>
 		</dependency>
 		<dependency>
-	<groupId>org.apache.maven.doxia</groupId>
-	<artifactId>doxia-core</artifactId>
-	<version>1.6</version>
-</dependency>
-		
+			<groupId>org.apache.maven.doxia</groupId>
+			<artifactId>doxia-core</artifactId>
+			<version>1.6</version>
+		</dependency>
+
 		<dependency>
-	<groupId>org.apache.maven.doxia</groupId>
-	<artifactId>doxia-module-xdoc</artifactId>
-	<version>1.6</version>
-</dependency>
-		
+			<groupId>org.apache.maven.doxia</groupId>
+			<artifactId>doxia-module-xdoc</artifactId>
+			<version>1.6</version>
+		</dependency>
+
 	</dependencies>
 
 	<build>
