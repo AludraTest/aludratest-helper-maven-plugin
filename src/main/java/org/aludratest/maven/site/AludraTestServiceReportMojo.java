@@ -30,13 +30,11 @@ import org.apache.maven.reporting.MavenReportException;
  */
 public class AludraTestServiceReportMojo extends AbstractMavenReport {
 
-    /**
-     * Directory where reports will go.
+    /** Directory where reports will go.
      * 
      * @parameter expression="${project.reporting.outputDirectory}"
      * @required
-     * @readonly
-     */
+     * @readonly */
     private String outputDirectory;
 
     /**

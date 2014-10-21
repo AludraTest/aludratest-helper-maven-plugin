@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component-set>
+	<components>
+		<component>
+			<role>org.apache.maven.doxia.parser.Parser</role>
+			<role-hint>mediawiki</role-hint>
+			<implementation>org.aludratest.doxia.mediawiki.MediaWikiParser
+			</implementation>
+			<description>Parse an MediaWiki model and emit events into the
+				specified doxia Sink.
+			</description>
+			<isolated-realm>false</isolated-realm>
+		</component>
+		<component>
+			<role>org.apache.maven.doxia.parser.module.ParserModule</role>
+			<role-hint>mediawiki</role-hint>
+			<implementation>org.aludratest.doxia.mediawiki.MediaWikiParserModule
+			</implementation>
+			<description />
+			<isolated-realm>false</isolated-realm>
+		</component>
+		<component>
+			<role>org.apache.maven.doxia.module.site.SiteModule</role>
+			<role-hint>mediawiki</role-hint>
+			<implementation>org.aludratest.doxia.mediawiki.MediaWikiSiteModule
+			</implementation>
+			<description />
+			<isolated-realm>false</isolated-realm>
+		</component>
+	</components>
+</component-set>

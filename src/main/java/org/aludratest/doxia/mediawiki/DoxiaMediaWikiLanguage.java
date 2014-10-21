@@ -13,23 +13,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.aludratest.maven.site.impl.parser;
+package org.aludratest.doxia.mediawiki;
 
-public final class ServiceDescription extends ComponentDescription {
+import org.eclipse.mylyn.wikitext.mediawiki.core.MediaWikiLanguage;
 
-	String name;
+public class DoxiaMediaWikiLanguage extends MediaWikiLanguage {
 
-	String description;
-
-	ServiceDescription() {
-	}
-
-    public String getName() {
-        return name;
-    }
-
-    public String getDescription() {
-        return description;
+    @Override
+    public boolean isEmptyLine(String line) {
+        // preserves preformatted blocks with empty lines
+        return line.length() == 0;
     }
 
 }

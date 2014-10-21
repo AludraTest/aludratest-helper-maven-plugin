@@ -13,23 +13,18 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.aludratest.maven.site.impl.parser;
+package org.aludratest.doxia.mediawiki;
 
-public final class ServiceDescription extends ComponentDescription {
+import org.apache.maven.doxia.parser.module.AbstractParserModule;
+import org.apache.maven.doxia.parser.module.ParserModule;
+import org.codehaus.plexus.component.annotations.Component;
 
-	String name;
+@Component(role = ParserModule.class)
+public class MediaWikiParserModule extends AbstractParserModule {
 
-	String description;
-
-	ServiceDescription() {
-	}
-
-    public String getName() {
-        return name;
-    }
-
-    public String getDescription() {
-        return description;
+    /** Default constructor. */
+    public MediaWikiParserModule() {
+        super("mediawiki", "mediawiki");
     }
 
 }
