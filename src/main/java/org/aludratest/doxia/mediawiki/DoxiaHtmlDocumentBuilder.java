@@ -16,7 +16,10 @@
 package org.aludratest.doxia.mediawiki;
 
 import java.io.Writer;
+import java.util.HashMap;
 import java.util.Locale;
+import java.util.Map;
+import java.util.Stack;
 
 import org.eclipse.mylyn.wikitext.core.parser.Attributes;
 import org.eclipse.mylyn.wikitext.core.parser.builder.HtmlDocumentBuilder;
@@ -27,6 +30,9 @@ public class DoxiaHtmlDocumentBuilder extends HtmlDocumentBuilder {
     private final static String WIKI_URL_PREFIX = "/wiki/";
 
     private boolean sourceDiv;
+
+    /** An internal structure to be able to append arbitrary attributes to a block being processed, or its parent blocks. */
+    private Stack<BlockProcessAttributes> blockAttributes = new Stack<BlockProcessAttributes>();
 
     public DoxiaHtmlDocumentBuilder(Writer out) {
         super(out);
@@ -42,18 +48,36 @@ public class DoxiaHtmlDocumentBuilder extends HtmlDocumentBuilder {
 
     @Override
     public void beginBlock(BlockType type, Attributes attributes) {
+        blockAttributes.push(new BlockProcessAttributes(type));
         if (type == BlockType.PREFORMATTED && !sourceDiv) {
             Attributes srcAttr = new Attributes();
             srcAttr.setCssClass("source");
             super.beginBlock(BlockType.DIV, srcAttr);
             sourceDiv = true;
         }
+        if (type == BlockType.TABLE) {
+            attributes.appendCssClass("bodyTable");
+            blockAttributes.peek().setAttribute("tableRowIndex", Integer.valueOf(0));
+        }
+        if (type == BlockType.TABLE_ROW) {
+            BlockProcessAttributes attrs = getFirstAncestorAttributes(BlockType.TABLE);
+            if (attrs != null) {
+                Integer rowIndex = (Integer) attrs.getAttribute("tableRowIndex");
+                if (rowIndex != null) {
+                    attributes.appendCssClass(rowIndex.intValue() % 2 == 0 ? "a" : "b");
+                    attrs.setAttribute("tableRowIndex", Integer.valueOf(rowIndex.intValue() + 1));
+                }
+            }
+        }
+
         super.beginBlock(type, attributes);
     }
 
     @Override
     public void endBlock() {
         super.endBlock();
+        blockAttributes.pop();
+
         // also end the DIV block, if preformatted
         if (sourceDiv) {
             super.endBlock();
@@ -72,6 +96,41 @@ public class DoxiaHtmlDocumentBuilder extends HtmlDocumentBuilder {
         else {
             return super.makeUrlAbsolute(url);
         }
+    }
+
+    private BlockProcessAttributes getFirstAncestorAttributes(BlockType blockType) {
+        for (int i = blockAttributes.size() - 1; i >= 0; i--) {
+            if (blockAttributes.get(i).blockType == blockType) {
+                return blockAttributes.get(i);
+            }
+        }
+        return null;
+    }
+
+    private static class BlockProcessAttributes {
+
+        private BlockType blockType;
+
+        private Map<String, Object> attributes;
+
+        public BlockProcessAttributes(BlockType blockType) {
+            this.blockType = blockType;
+        }
+
+        public void setAttribute(String key, Object value) {
+            if (attributes == null) {
+                attributes = new HashMap<String, Object>();
+            }
+            attributes.put(key, value);
+        }
+
+        public Object getAttribute(String key) {
+            if (attributes == null) {
+                return null;
+            }
+            return attributes.get(key);
+        }
+
     }
 
 }
