@@ -269,9 +269,9 @@
 	</reporting>
 
 	<scm>
-		<connection>scm:git:git@github.com:AludraTest/aludratest-helper-maven-plugin.git</connection>
-		<developerConnection>scm:git:git@github.com:AludraTest/aludratest-helper-maven-plugin.git</developerConnection>
-		<url>scm:git:git@github.com:AludraTest/aludratest-helper-maven-plugin.git</url>
+		<connection>scm:git:https://git@github.com:AludraTest/aludratest-helper-maven-plugin.git</connection>
+		<developerConnection>scm:git:https://git@github.com/AludraTest/aludratest-helper-maven-plugin.git</developerConnection>
+		<url>https://github.com/AludraTest/aludratest-helper-maven-plugin.git</url>
 	</scm>
 
 	<issueManagement>
