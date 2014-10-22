@@ -22,6 +22,8 @@
 		<name>aludratest.org</name>
 		<url>http://www.aludratest.org/</url>
 	</organization>
+	
+	<url>http://www.aludratest.org/</url>
 
 	<developers>
 		<developer>
