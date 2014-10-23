@@ -223,6 +223,8 @@
 							<server>github</server>
 							<message>Updating site for ${project.artifactId}
 								${project.version}</message>
+							<repositoryOwner>AludraTest</repositoryOwner>
+							<repositoryName>aludratest-helper-maven-plugin</repositoryName>
 						</configuration>
 						<executions>
 							<execution>
