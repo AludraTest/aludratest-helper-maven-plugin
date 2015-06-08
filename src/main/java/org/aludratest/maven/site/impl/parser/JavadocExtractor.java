@@ -80,10 +80,12 @@ public final class JavadocExtractor {
 
             String javadoc = srcClass.getComment();
 
-            // translate {@link ...} links, if any
-            javadoc = resolveDocLinks(javadoc, src);
+            if (javadoc != null) {
+                // translate {@link ...} links, if any
+                return resolveDocLinks(javadoc, src);
+            }
 
-            return javadoc;
+            return "<i>no description available</i>";
         }
         catch (IOException e) {
             log.error("Could not extract description Javadoc from class " + clazz.getName(), e);
