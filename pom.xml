@@ -2,7 +2,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.aludratest.maven</groupId>
 	<artifactId>aludratest-helper-maven-plugin</artifactId>
-	<version>1.0.2</version>
+	<version>1.0.3-SNAPSHOT</version>
 	<packaging>maven-plugin</packaging>
 	<name>AludraTest Maven Build Helper Plugin</name>
 	<description>Maven Plugin for AludraTest Build support, e.g. specialized site generation.</description>
@@ -284,7 +284,7 @@
 		<connection>scm:git:https://git@github.com:AludraTest/aludratest-helper-maven-plugin.git</connection>
 		<developerConnection>scm:git:https://git@github.com/AludraTest/aludratest-helper-maven-plugin.git</developerConnection>
 		<url>https://github.com/AludraTest/aludratest-helper-maven-plugin.git</url>
-	  <tag>aludratest-helper-maven-plugin-1.0.2</tag>
+	  <tag>HEAD</tag>
   </scm>
 
 	<issueManagement>
